@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0d0d0f">
+  <title>Praktikums-Dashboard · Damain Dressel</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark">D</span><span><b>Praktikum</b><small>WORKSPACE</small></span></a>
+    <div class="side-label">MENÜ</div>
+    <nav class="side-nav">
+      <a class="nav-item active" href="#overview"><span class="nav-ico">▦</span> Übersicht</a>
+      <a class="nav-item" href="#businesses"><span class="nav-ico">▤</span> Meine Betriebe <span class="nav-count" id="navBusinessCount">4</span></a>
+      <a class="nav-item" href="#calendar"><span class="nav-ico">▣</span> Kalender</a>
+      <a class="nav-item" href="#documents"><span class="nav-ico">▧</span> Unterlagen</a>
+    </nav>
+    <div class="side-label tools-label">ARBEITSBEREICH</div>
+    <div class="workspace-card"><div class="workspace-icon">HG</div><div><b>BGJ Holztechnik</b><small>Praktikum 2027</small></div><span class="online-dot"></span></div>
+    <div class="sidebar-bottom"><div class="help-card"><span class="help-symbol">✦</span><b>Alles im Blick behalten</b><p>Verwalte deine Anfragen und halte deinen Praktikumsfortschritt fest.</p></div><div class="profile"><div class="avatar">DD</div><div><b>Damain Dressel</b><small>Schüler · HG 10</small></div><span class="dots">•••</span></div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><div class="crumb">Workspace <span>/</span> <b>Übersicht</b></div><div class="top-actions"><span class="today-chip"><i></i><span id="today"></span></span><button class="icon-btn" id="exportBtn" title="Daten exportieren">⇩</button><button class="btn primary" id="addBtn"><span>＋</span> Betrieb hinzufügen</button></div></header>
+    <div class="page-content" id="overview">
+      <section class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> DEIN PRAKTIKUM WORKSPACE</div><h1>Guten Tag, Damain <span>✦</span></h1><p>Hier findest du alles rund um deine Praktikumsanfragen an einem Ort.</p></div><div class="period-card"><div class="period-icon">◷</div><div><small>GEWÜNSCHTER ZEITRAUM</small><b>01.02. – 26.02.2027</b><span>Eine Praktikumswoche · nach Absprache</span></div></div></section>
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Anfragen gesamt</span><span class="stat-icon blue">✉</span></div><div class="stat-value" id="countSent">4</div><div class="stat-foot"><span class="tiny-dot blue-dot"></span> Betriebe kontaktiert</div><div class="stat-bar"><i style="width:100%"></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Antworten</span><span class="stat-icon violet">↩</span></div><div class="stat-value" id="countReplies">0</div><div class="stat-foot">Rückmeldungen erhalten</div><div class="stat-bar violet-bar"><i id="replyBar" style="width:0%"></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Zusagen</span><span class="stat-icon green">✓</span></div><div class="stat-value" id="countAccepted">0</div><div class="stat-foot">Praktikumsplätze bestätigt</div><div class="stat-bar green-bar"><i id="acceptedBar" style="width:0%"></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Kalendereinträge</span><span class="stat-icon orange">▣</span></div><div class="stat-value" id="countEvents">0</div><div class="stat-foot">Eingetragene Zeiträume</div><div class="stat-bar orange-bar"><i id="eventBar" style="width:0%"></i></div></article>
+      </section>
+      <section class="content-grid" id="businesses">
+        <div class="panel businesses-panel"><div class="panel-heading"><div><div class="eyebrow">DEINE KONTAKTE</div><h2>Meine Betriebe</h2><p>Behalte den Überblick über deine Anfragen und Rückmeldungen.</p></div><button class="text-button" id="addInline">＋ Hinzufügen</button></div><div class="business-toolbar"><span id="businessTotal">4 BETRIEBE</span><span class="legend"><i class="legend-blue"></i> Anfrage <i class="legend-yellow"></i> Antwort <i class="legend-green"></i> Zusage</span></div><div class="business-list" id="businessGrid"></div></div>
+        <div class="right-column">
+          <section class="panel progress-panel"><div class="panel-heading compact"><div><div class="eyebrow">DEIN FORTSCHRITT</div><h2>Praktikumsstatus</h2></div><span class="round-arrow">↗</span></div><div class="progress-ring-wrap"><div class="progress-ring" id="progressRing"><div><b id="progressPercent">0%</b><small>ABGESCHLOSSEN</small></div></div></div><div class="progress-caption"><span>Deine Anfragen</span><b id="progressCount">0 von 4</b></div><div class="progress-track"><i id="progressLine"></i></div><p class="muted-note">Eine Zusage bringt dich deinem Praktikumsplatz näher.</p></section>
+          <section class="panel gmail-panel"><div class="panel-heading compact"><div><div class="eyebrow">E-MAILS</div><h2>Gmail-Status</h2></div><span class="gmail-mark">M</span></div><div class="connection-state"><span class="connection-dot"></span><div><b>Keine automatische Verbindung</b><small>Manuelle Rückmeldung aktiv</small></div></div><p>Die Webseite synchronisiert Gmail noch nicht automatisch. Die wöchentliche Antwortprüfung ist separat eingerichtet. Sobald eine Antwort kommt, kannst du sie im Dashboard eintragen.</p><a class="gmail-link" href="https://mail.google.com/" target="_blank" rel="noopener">Gmail öffnen <span>↗</span></a></section>
+        </div>
+      </section>
+      <section class="bottom-grid">
+        <section class="panel calendar-panel" id="calendar"><div class="panel-heading"><div><div class="eyebrow">TERMINE & PLANUNG</div><h2>Praktikumskalender</h2><p>Alle bestätigten Zeiträume auf einen Blick.</p></div><button class="btn secondary small" id="icsBtn">⇩ Kalenderdatei</button></div><div id="calendarList" class="calendar-list"><div class="empty">Noch kein Praktikumstermin eingetragen. Sobald ein Betrieb zusagt, kannst du hier den bestätigten Zeitraum hinterlegen.</div></div></section>
+        <section class="panel documents-panel" id="documents"><div class="panel-heading"><div><div class="eyebrow">WICHTIGE DATEI</div><h2>Praktikumsvertrag</h2></div><span class="file-icon">PDF</span></div><div class="document-file"><div class="pdf-icon">PDF</div><div><b>Praktikumsvertrag – HG 10</b><small>Berufsschule 1 Fürth · offizielles Formular</small></div></div><a class="btn secondary full" href="https://www.berufsschule1-fuerth.de/wp-content/uploads/2025/02/Praktikumsvertrag-HG-10.pdf" target="_blank" rel="noopener">Formular öffnen <span>↗</span></a><div class="checklist"><label><input type="checkbox" data-check="company"> Betriebliche Angaben eingetragen</label><label><input type="checkbox" data-check="signature"> Vom Betrieb unterschrieben</label><label><input type="checkbox" data-check="school"> Bei der Schule abgegeben</label></div></section>
+      </section>
+      <section class="panel mail-template"><div class="panel-heading"><div><div class="eyebrow">NÜTZLICHE VORLAGE</div><h2>Versendete Anfrage</h2><p>Dein verwendeter Anfrage-Text.</p></div><button class="btn secondary small" id="copyMail">Text kopieren</button></div><pre id="mailText">Sehr geehrte Damen und Herren,
+
+ich besuche derzeit das Berufsgrundbildungsjahr (BGJ) Holztechnik und möchte gerne praktische Erfahrungen im Schreinerhandwerk sammeln.
+
+Daher möchte ich anfragen, ob ich bei Ihnen im Zeitraum vom 01.02.2027 bis zum 26.02.2027 für eine Woche ein Schülerpraktikum absolvieren kann. Den genauen Wochenzeitraum würde ich gerne mit Ihnen abstimmen.
+
+Über eine Rückmeldung, ob ein Praktikumsplatz möglich ist, würde ich mich sehr freuen.
+
+Mit freundlichen Grüßen
+
+LG
+Damain Dressel</pre></section>
+      <footer>Praktikums-Dashboard <span>·</span> Deine Einträge werden lokal in diesem Browser gespeichert.</footer>
+    </div>
+  </main>
+</div>
+<dialog id="businessDialog"><form method="dialog" id="businessForm"><div class="dialog-head"><div><div class="eyebrow">BETRIEB VERWALTEN</div><h2 id="dialogTitle">Betrieb bearbeiten</h2></div><button class="x" value="cancel" aria-label="Schließen">×</button></div><input type="hidden" id="businessId"><label>Betrieb<input id="businessName" required></label><label>E-Mail-Adresse<input id="businessEmail" type="email"></label><label>Status<select id="businessStatus"><option value="sent">Anfrage versendet</option><option value="waiting">Warte auf Antwort</option><option value="replied">Antwort erhalten</option><option value="accepted">Zusage erhalten</option><option value="rejected">Absage erhalten</option></select></label><label>Notiz / Inhalt der Antwort<textarea id="businessNote" rows="3" placeholder="z. B. Rückruf erbeten, Zusage, Absage …"></textarea></label><div class="date-fields"><label>Praktikumsbeginn<input id="dateStart" type="date" min="2027-02-01" max="2027-02-26"></label><label>Praktikumsende<input id="dateEnd" type="date" min="2027-02-01" max="2027-02-26"></label></div><label>Betriebliche Angaben / Ansprechpartner<input id="companyDetails" placeholder="z. B. Ansprechpartner, Anschrift, Telefon"></label><div class="dialog-actions"><button type="button" class="btn danger" id="deleteBtn">Betrieb löschen</button><button type="submit" class="btn primary">Speichern</button></div></form></dialog>
+<script src="app.js"></script>
+</body></html>
