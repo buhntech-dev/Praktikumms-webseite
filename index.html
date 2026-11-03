@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Praktikum – Damain Dressel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">DD</div><div><strong>Praktikums-Dashboard</strong><small>BGJ Holztechnik · Damain Dressel</small></div></div>
+    <div class="top-actions"><button class="btn ghost" id="exportBtn">Daten exportieren</button><button class="btn" id="addBtn">+ Betrieb hinzufügen</button></div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MEIN PRAKTIKUM 2027</p>
+        <h1>Alles im Blick.<br><span>Schritt für Schritt zum Praktikum.</span></h1>
+        <p class="hero-copy">Anfragen, Rückmeldungen, Termine und Praktikumsunterlagen an einem Ort.</p>
+      </div>
+      <div class="hero-date"><small>Gewünschter Zeitraum</small><strong>01.02. – 26.02.2027</strong><span>Eine Praktikumswoche · genauer Termin nach Absprache</span></div>
+    </section>
+
+    <section class="stats">
+      <article class="stat"><span class="stat-icon">✉</span><div><small>Anfragen</small><strong id="countSent">4</strong></div></article>
+      <article class="stat"><span class="stat-icon">◷</span><div><small>Antworten</small><strong id="countReplies">0</strong></div></article>
+      <article class="stat"><span class="stat-icon">✓</span><div><small>Zusagen</small><strong id="countAccepted">0</strong></div></article>
+      <article class="stat"><span class="stat-icon">▦</span><div><small>Kalendereinträge</small><strong id="countEvents">0</strong></div></article>
+    </section>
+
+    <section class="section-head"><div><p class="eyebrow">ÜBERSICHT</p><h2>Meine Betriebe</h2></div><span class="muted">Stand: <span id="today"></span></span></section>
+    <section class="business-grid" id="businessGrid"></section>
+
+    <section class="two-col">
+      <section class="panel">
+        <div class="panel-head"><div><p class="eyebrow">PLANUNG</p><h2>Praktikumskalender</h2></div><button class="btn ghost small" id="icsBtn">Kalenderdatei (.ics)</button></div>
+        <div id="calendarList" class="calendar-list"><div class="empty">Noch kein Praktikumstermin eingetragen. Sobald ein Betrieb zusagt, kannst du hier den bestätigten Zeitraum hinterlegen.</div></div>
+        <p class="hint">Termine werden zunächst nur in diesem Dashboard gespeichert. Mit „Kalenderdatei“ kannst du sie in Google Kalender, Outlook oder Apple Kalender importieren.</p>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><p class="eyebrow">UNTERLAGEN</p><h2>Praktikumsvertrag</h2></div><span class="file-icon">PDF</span></div>
+        <p class="doc-title">Praktikumsvertrag – HG 10</p>
+        <p class="muted">Berufsschule 1 Fürth · offizielles Formular</p>
+        <a class="btn full" href="https://www.berufsschule1-fuerth.de/wp-content/uploads/2025/02/Praktikumsvertrag-HG-10.pdf" target="_blank" rel="noopener">Formular öffnen ↗</a>
+        <div class="checklist">
+          <label><input type="checkbox" data-check="company"> Betriebliche Angaben eingetragen</label>
+          <label><input type="checkbox" data-check="signature"> Vom Betrieb unterschrieben</label>
+          <label><input type="checkbox" data-check="school"> Bei der Schule abgegeben</label>
+        </div>
+        <p class="hint">Die betrieblichen Angaben kannst du nach einer Zusage ergänzen. Deine privaten Angaben bleiben hier bewusst offen.</p>
+      </section>
+    </section>
+
+    <section class="panel message-panel">
+      <div class="panel-head"><div><p class="eyebrow">VORLAGE</p><h2>Versendete Anfrage</h2></div><button class="btn ghost small" id="copyMail">Text kopieren</button></div>
+      <p class="muted">Diese Anfrage wurde an die aufgeführten Betriebe einzeln versendet.</p>
+      <pre id="mailText">Sehr geehrte Damen und Herren,
+
+ich besuche derzeit das Berufsgrundbildungsjahr (BGJ) Holztechnik und möchte gerne praktische Erfahrungen im Schreinerhandwerk sammeln.
+
+Daher möchte ich anfragen, ob ich bei Ihnen im Zeitraum vom 01.02.2027 bis zum 26.02.2027 für eine Woche ein Schülerpraktikum absolvieren kann. Den genauen Wochenzeitraum würde ich gerne mit Ihnen abstimmen.
+
+Über eine Rückmeldung, ob ein Praktikumsplatz möglich ist, würde ich mich sehr freuen.
+
+Mit freundlichen Grüßen
+
+LG
+Damain Dressel</pre>
+    </section>
+
+    <footer>Praktikums-Dashboard · Deine Einträge werden lokal in diesem Browser gespeichert.</footer>
+  </main>
+
+  <dialog id="businessDialog">
+    <form method="dialog" id="businessForm">
+      <div class="dialog-head"><div><p class="eyebrow">BETRIEB VERWALTEN</p><h2 id="dialogTitle">Betrieb bearbeiten</h2></div><button class="x" value="cancel" aria-label="Schließen">×</button></div>
+      <input type="hidden" id="businessId">
+      <label>Betrieb<input id="businessName" required></label>
+      <label>E-Mail-Adresse<input id="businessEmail" type="email"></label>
+      <label>Status<select id="businessStatus"><option value="sent">Anfrage versendet</option><option value="waiting">Warte auf Antwort</option><option value="replied">Antwort erhalten</option><option value="accepted">Zusage erhalten</option><option value="rejected">Absage erhalten</option></select></label>
+      <label>Notiz / Inhalt der Antwort<textarea id="businessNote" rows="3" placeholder="z. B. Rückruf erbeten, Zusage, Absage …"></textarea></label>
+      <div class="date-fields"><label>Praktikumsbeginn<input id="dateStart" type="date" min="2027-02-01" max="2027-02-26"></label><label>Praktikumsende<input id="dateEnd" type="date" min="2027-02-01" max="2027-02-26"></label></div>
+      <label>Betriebliche Angaben / Ansprechpartner<input id="companyDetails" placeholder="z. B. Ansprechpartner, Anschrift, Telefon"></label>
+      <div class="dialog-actions"><button type="button" class="btn danger" id="deleteBtn">Betrieb löschen</button><button type="submit" class="btn">Speichern</button></div>
+    </form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
